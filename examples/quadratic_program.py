@@ -5,7 +5,7 @@
 # Copyright 2016-2022 Stéphane Caron and the qpsolvers contributors
 
 """Test the "quadprog" QP solver on a small dense problem."""
-
+# change 
 import random
 from time import perf_counter
 
