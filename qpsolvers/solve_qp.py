@@ -90,9 +90,15 @@ def solve_qp(
     semi-definite matrices.
 
     Returns
-    -------
-    :
-        Optimal solution if found, otherwise ``None``.
+    -------   
+    x:
+        Optimal solution if found, (``None`` if no solution
+        was found).
+
+    obj:
+        Value of the primal objective at the solution (``None`` if no solution
+        was found).
+
 
     Raises
     ------
@@ -133,4 +139,4 @@ def solve_qp(
         )
     problem = Problem(P, q, G, h, A, b, lb, ub)
     solution = solve_problem(problem, solver, initvals, verbose, **kwargs)
-    return solution.x if solution.found else None
+    return solution.x, solution.obj if solution.found else None

@@ -26,7 +26,7 @@ x_sol = np.array([0.3076923111580727, -0.6923076888419274, 1.3846153776838548])
 if __name__ == "__main__":
     start_time = perf_counter()
     solver = random.choice(available_solvers)
-    x = solve_qp(P, q, G, h, A, b, solver=solver)
+    x, obj = solve_qp(P, q, G, h, A, b, solver=solver)
     end_time = perf_counter()
 
     print("")
@@ -42,4 +42,5 @@ if __name__ == "__main__":
     print("")
     print(f"Solution: x = {x}")
     print(f"It should be close to x* = {x_sol}")
+    print(f"Objective value: {obj}")
     print(f"Found in {1e6 * (end_time - start_time):.0f} [us] with {solver}")
