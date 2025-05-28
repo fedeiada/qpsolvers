@@ -37,7 +37,7 @@ that define it and call the :func:`.solve_qp` function:
     A = array([1., 1., 1.])
     b = array([1.])
 
-    x = solve_qp(P, q, G, h, A, b, solver="osqp")
+    x, _= solve_qp(P, q, G, h, A, b, solver="osqp")
     print(f"QP solution: x = {x}")
 
 The backend QP solver is selected among :ref:`supported solvers <Supported

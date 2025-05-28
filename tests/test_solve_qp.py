@@ -131,7 +131,7 @@ class TestSolveQP(unittest.TestCase):
 
         def test(self):
             P, q, G, h, A, b = self.get_dense_problem()
-            x = solve_qp(P, q, G, h, A, b, solver=solver)
+            x, _= solve_qp(P, q, G, h, A, b, solver=solver)
             x_sp = solve_qp(P, q, G, h, A, b, solver=solver)
             self.assertIsNotNone(x, f"{solver=}")
             self.assertIsNotNone(x_sp, f"{solver=}")
@@ -285,7 +285,7 @@ class TestSolveQP(unittest.TestCase):
             P, q, G, h, A, b = self.get_dense_problem()
             lb = array([-1.0, -2.0, -0.5])
             ub = array([1.0, -0.2, 1.0])
-            x = solve_qp(P, q, G, h, A, b, lb, ub, solver=solver)
+            x, _= solve_qp(P, q, G, h, A, b, lb, ub, solver=solver)
             self.assertIsNotNone(x)
             known_solution = array([0.41463415, -0.41463415, 1.0])
             sol_tolerance = (
@@ -335,7 +335,7 @@ class TestSolveQP(unittest.TestCase):
 
         def test(self):
             P, q, G, h, A, b = self.get_dense_problem()
-            x = solve_qp(P, q, solver=solver)
+            x, _= solve_qp(P, q, solver=solver)
             self.assertIsNotNone(x)
             known_solution = array([-0.64705882, -1.17647059, -1.82352941])
             sol_tolerance = (
@@ -368,7 +368,7 @@ class TestSolveQP(unittest.TestCase):
 
         def test(self):
             P, q, G, h, A, b = self.get_dense_problem()
-            x = solve_qp(P, q, G, h, solver=solver)
+            x, _= solve_qp(P, q, G, h, solver=solver)
             self.assertIsNotNone(x)
             known_solution = array([-0.49025721, -1.57755261, -0.66484801])
             sol_tolerance = (
@@ -419,7 +419,7 @@ class TestSolveQP(unittest.TestCase):
 
         def test(self):
             P, q, G, h, A, b = self.get_dense_problem()
-            x = solve_qp(P, q, A=A, b=b, solver=solver)
+            x, _= solve_qp(P, q, A=A, b=b, solver=solver)
             self.assertIsNotNone(x)
             known_solution = array([0.28026906, -1.55156951, 2.27130045])
             sol_tolerance = (
@@ -472,7 +472,7 @@ class TestSolveQP(unittest.TestCase):
         def test(self):
             P, q, G, h, A, b = self.get_dense_problem()
             G, h = G[1], h[1].reshape((1,))
-            x = solve_qp(P, q, G, h, A, b, solver=solver)
+            x, _= solve_qp(P, q, G, h, A, b, solver=solver)
             self.assertIsNotNone(x)
             known_solution = array([0.30769231, -0.69230769, 1.38461538])
             sol_tolerance = (
@@ -547,7 +547,7 @@ class TestSolveQP(unittest.TestCase):
             tol_solvers = ("osqp", "proxqp", "qpalm", "scs")
             if solver in tol_solvers:
                 kwargs["eps_abs"] = 2e-4
-            x = solve_qp(P, q, G, h, solver=solver)
+            x, _= solve_qp(P, q, G, h, solver=solver)
             self.assertIsNotNone(x)
             known_solution = array([2.0] * 149 + [3.0])
             sol_tolerance = (
@@ -605,7 +605,7 @@ class TestSolveQP(unittest.TestCase):
             P, q, G, h = self.get_sparse_problem()
             lb = +2.2 * ones(q.shape)
             ub = +2.4 * ones(q.shape)
-            x = solve_qp(P, q, G, h, lb=lb, ub=ub, solver=solver)
+            x, _= solve_qp(P, q, G, h, lb=lb, ub=ub, solver=solver)
             self.assertIsNotNone(x)
             known_solution = array([2.2] * 149 + [2.4])
             sol_tolerance = (
@@ -653,7 +653,7 @@ class TestSolveQP(unittest.TestCase):
                 # Skipping this test for CVXOPT and KVXOPT for now
                 # See https://github.com/cvxopt/cvxopt/issues/229
                 return
-            x = solve_qp(P, q, G, h, lb=lb, ub=ub, solver=solver)
+            x, _= solve_qp(P, q, G, h, lb=lb, ub=ub, solver=solver)
             self.assertIsNone(x)
 
         return test
@@ -679,7 +679,7 @@ class TestSolveQP(unittest.TestCase):
             P, q, G, h, A, b = self.get_dense_problem()
             known_solution = array([0.30769231, -0.69230769, 1.38461538])
             initvals = known_solution + 0.1 * random.random(3)
-            x = solve_qp(
+            x, _= solve_qp(
                 P,
                 q,
                 G,
@@ -772,7 +772,7 @@ class TestSolveQP(unittest.TestCase):
         def test(self):
             problem = get_qpmad_demo_problem()
             P, q, G, h, _, _, lb, ub = problem.unpack()
-            x = solve_qp(P, q, G, h, lb=lb, ub=ub, solver=solver)
+            x, _= solve_qp(P, q, G, h, lb=lb, ub=ub, solver=solver)
             known_solution = array(
                 [
                     1.0,

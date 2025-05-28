@@ -32,7 +32,7 @@ try:
             h = jnp.array([3.0, 2.0, -2.0])
             A = jnp.array([1.0, 1.0, 1.0])
             b = jnp.array([1.0])
-            x = solve_qp(P, q, G, h, A, b, solver="jaxopt_osqp")
+            x, _= solve_qp(P, q, G, h, A, b, solver="jaxopt_osqp")
             self.assertIsNotNone(x)
 
 except ImportError as exn:  # in case the solver is not installed

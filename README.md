@@ -42,7 +42,7 @@ h = np.array([3.0, 2.0, -2.0])
 A = np.array([1.0, 1.0, 1.0])
 b = np.array([1.0])
 
-x = solve_qp(P, q, G, h, A, b, solver="proxqp")
+x, _= solve_qp(P, q, G, h, A, b, solver="proxqp")
 print(f"QP solution: {x = }")
 ```
 

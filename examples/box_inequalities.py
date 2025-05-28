@@ -26,7 +26,7 @@ x_sol = np.array([0.41463414566726164, -0.41463414566726164, 1.0])
 if __name__ == "__main__":
     start_time = perf_counter()
     solver = random.choice(available_solvers)
-    x = solve_qp(P, q, A=A, b=b, lb=lb, ub=ub, solver=solver)
+    x, _= solve_qp(P, q, A=A, b=b, lb=lb, ub=ub, solver=solver)
     end_time = perf_counter()
 
     print("")
