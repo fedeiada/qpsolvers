@@ -3,7 +3,7 @@ requires = ["flit_core >=2,<4"]
 build-backend = "flit_core.buildapi"
 
 [project]
-name = "qpsolvers_fork"
+name = "qpsolvers"
 readme = "README.md"
 authors = [
     {name = "Stéphane Caron", email = "stephane.caron@normalesup.org"},
